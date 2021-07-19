@@ -7,3 +7,6 @@
 /EmployeeProject/EmployeeService/EmployeeService.csproj.user
 /.vs
 /EmployeeProject/.vs/EmployeeProject/v16
+/EmployeeService/bin/Debug/net5.0
+/EmployeeService/obj
+/EmployeeService/EmployeeService.csproj.user
