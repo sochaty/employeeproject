@@ -1,6 +1,8 @@
+using EmployeeService.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -10,6 +12,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using EmployeeService.Contract;
+using EmployeeService.Data;
 
 namespace EmployeeService
 {
@@ -25,7 +29,9 @@ namespace EmployeeService
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
+            string dbConnectionString = Configuration.GetConnectionString("DotNetCoreMySQLAppConnection");
+            services.AddDbContext<employeesContext>(opt => opt.UseMySql(dbConnectionString, ServerVersion.AutoDetect(dbConnectionString)));
+            services.AddScoped<IEmployeeRepository, EmployeeRepository>();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
