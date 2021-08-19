@@ -66,5 +66,25 @@ namespace EmployeeService.Controllers
             }
             return NoContent();
         }
+
+        [HttpPost]
+        public IActionResult PostEmployee(EmployeeService.Models.Employee employee)
+        {
+            _employeeRepository.InsertEmployee(employee);
+            return CreatedAtAction("GetEmployee", new { id = employee.EmpNo }, employee);
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult DeleteEmployee(string id)
+        {
+            var employee = _employeeRepository.GetEmployee(id);
+
+            if (employee == null)
+            {
+                return NotFound();
+            }
+            _employeeRepository.DeleteEmployee(employee);
+            return NoContent();
+        }
     }
 }

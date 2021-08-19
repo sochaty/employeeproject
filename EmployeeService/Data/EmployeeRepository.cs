@@ -50,5 +50,17 @@ namespace EmployeeService.Data
         {
             return _context.Employees.Any(e => e.EmpNo == id);
         }
+
+        public int InsertEmployee(Employee employee)
+        {
+            _context.Employees.Add(employee);
+            return _context.SaveChanges();
+        }
+
+        public void DeleteEmployee(Employee employee)
+        {
+            _context.Employees.Remove(employee);
+            _context.SaveChanges();
+        }
     }
 }

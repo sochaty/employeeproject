@@ -9,5 +9,7 @@ namespace EmployeeService.Contract
         Employee GetEmployee(string id);
         int UpdateEmployee(Employee employee);
         bool EmployeeExists(int id);
+        int InsertEmployee(Employee employee);
+        void DeleteEmployee(Employee employee);
     }
 }
